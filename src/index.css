@@ -81,6 +81,8 @@ button:focus-visible {
 
 .nav-item {
   padding: 10px;
+  display: flex;
+  align-items: center;
 }
 .nav-item > ul {
   display: flex;
@@ -145,7 +147,9 @@ button:focus-visible {
 }
 
 .search {
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
 }
 .res-name {
   font-weight: 600;

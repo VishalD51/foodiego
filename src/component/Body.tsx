@@ -34,11 +34,6 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0365437&lng=72.5611395&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const data = await responce.json();
-    console.log(
-      "responce",
-      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
     setRestList(
       data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
@@ -59,10 +54,12 @@ const Body = () => {
   return (
     <div className="body">
       <div className="search">
-        Search:
-        <input onChange={(e) => handleSearch(e)} value={search} />
+        <div>
+          Search:
+          <input onChange={(e) => handleSearch(e)} value={search} />
+        </div>
+        <button onClick={handleTopRated}>Top Rated</button>
       </div>
-      <button onClick={handleTopRated}>Top Rated</button>
       <div className="res-container">
         {filterList.length > 0 ? (
           filterList.map((item) => (
