@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ratingLogo from "../assets/rating.png";
 import { CDN_URL } from "../utils/constant";
 
@@ -8,9 +9,10 @@ const RestaurantCard = (props: any) => {
     if (str?.length <= maxLength) return str;
     return str?.slice(0, maxLength) + "...";
   };
+  console.log("info", info);
 
   return (
-    <a className="res-card">
+    <Link to={`/restaurant/${info?.id}`} className="res-card">
       <div className="res-card-in">
         <div className="img-container">
           <img
@@ -37,7 +39,7 @@ const RestaurantCard = (props: any) => {
           </span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

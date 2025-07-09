@@ -10,30 +10,25 @@ const Header = () => {
   }, [btnName]);
 
   return (
-    <div className="header">
-      <div className="logo-container">
-        <img alt="logo" src={foodieGoLogo} />
+    <div className="flex justify-between p-[10px] shadow-md shadow-gray-500 mb-2.5">
+      <div className="w-24">
+        <img alt="logo" src={foodieGoLogo} className="rounded-full" />
       </div>
-      <div className="nav-item">
-        <ul>
-          <li>
+      <div className="flex gap-2.5 items-center">
+        <ul className="flex flex-nowrap items-center gap-8 mr-3">
+          <li className="hover:text-blue-500">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="hover:text-blue-500">
             <Link to="about-us">About us</Link>
           </li>
-          <li>
+          <li className="hover:text-blue-500">
             <Link to="contact-us">Contact us</Link>
           </li>
-          <li>Cart</li>
+          <li className="hover:text-blue-500">
+            <Link to="grocery">Grocery</Link>
+          </li>
         </ul>
-        <button
-          onClick={() => {
-            btnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-          }}
-        >
-          {btnName}
-        </button>
       </div>
     </div>
   );

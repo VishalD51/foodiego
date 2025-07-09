@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import Header from "./component/Header.tsx";
@@ -16,6 +16,8 @@ const AppLayout = () => (
   </div>
 );
 
+const Grocery = lazy(() => import("./component/Grocery.tsx"));
+
 const route = createBrowserRouter([
   {
     path: "/",
@@ -26,12 +28,19 @@ const route = createBrowserRouter([
       { path: "/about-us", element: <AboutUs /> },
       { path: "/contact-us", element: <ConatctUs /> },
       { path: "/restaurant/:id", element: <RestaurantMenu /> },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading</h1>}>
+            {" "}
+            <Grocery />{" "}
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <RouterProvider router={route} />
-  </StrictMode>
+  <RouterProvider router={route} />
 );

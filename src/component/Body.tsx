@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { restData } from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import { Shimmer } from "react-shimmer";
+import useOnlineStatus from "./useOnlineStatus";
 
 const Body = () => {
   const [restList, setRestList] = useState([]);
   const [filterList, setFilterList] = useState([]);
   const [search, setSearch] = useState("");
   const [isTopRated, setIsTopRated] = useState(false);
+
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -51,11 +54,15 @@ const Body = () => {
     setSearch(e.target.value);
   };
 
+  if (onlineStatus === false) {
+    return <h1>You are offline.Please check your internet connection.</h1>;
+  }
+
   return (
     <div className="body">
       <div className="search">
         <div>
-          Search:
+          <span className="">Search:</span>
           <input onChange={(e) => handleSearch(e)} value={search} />
         </div>
         <button onClick={handleTopRated}>Top Rated</button>

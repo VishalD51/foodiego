@@ -1,25 +1,55 @@
-import { useEffect, useState } from "react";
+import ratingLogo from "../assets/rating.png";
+import { useParams } from "react-router-dom";
+import useRestaurantMenu from "./useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restInfo, setRestInfo] = useState("");
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const params = useParams();
 
-  const fetchMenu = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0365437&lng=72.5611395&restaurantId=47589"
-    );
+  const restInfo = useRestaurantMenu(params);
 
-    const json = await data.json();
-    setRestInfo(json?.data);
-  };
+  if (restInfo === null) return;
 
-  const { text } = restInfo?.cards?.[0]?.card?.card;
+  const { info } = restInfo && restInfo?.cards?.[2]?.card?.card;
+  const categoryData =
+    restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
+      ?.card;
+  console.log(restInfo?.cards?.[4]?.groupedCard?.cardGroupMap);
+
   return (
     <div>
-      <h1>{text}</h1>
-      <p>Menu item</p>
+      <h1>{info?.name}</h1>
+      <div className="rating-container">
+        <img className="rating-logo" alt="rating" src={ratingLogo}></img>
+        <span>
+          {info?.avgRating} {`(${info?.totalRatingsString})`}
+        </span>
+        <span>{info?.costForTwoMessage}</span>
+      </div>
+      <p>{info?.sla?.slaString?.toLowerCase()}</p>
+      <div className="category-container">
+        <p className="title">
+          {categoryData?.title}
+          {`(${categoryData?.itemCards?.length})`}
+        </p>
+        {categoryData?.itemCards?.length > 0 &&
+          categoryData?.itemCards?.map(({ card }) => (
+            <div className="itemCard">
+              <p className="vegNonveg">{card?.info?.vegClassifier}</p>
+              <p className="name">{card?.info?.name}</p>
+              <p className="pric">₹{card?.info?.defaultPrice / 100}</p>
+              <p className="rating">
+                {card?.info?.ratings?.aggregatedRating?.rating}
+                {`(${card?.info?.ratings?.aggregatedRating?.ratingCountV2})`}
+              </p>
+              <p
+                className="description"
+                style={{ width: "500px", lineClamp: "3" }}
+              >
+                {card?.info?.description}
+              </p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
