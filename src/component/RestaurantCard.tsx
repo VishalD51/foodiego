@@ -12,16 +12,16 @@ const RestaurantCard = (props: any) => {
   console.log("info", info);
 
   return (
-    <Link to={`/restaurant/${info?.id}`} className="res-card">
+    <Link to={`/restaurant/${info?.id}`} className="flex">
       <div className="res-card-in">
         <div className="img-container">
           <img
-            className="res-logo"
+            className="w-[250px] h-[120px] hover:rounded-xl hover:scale-95 duration-200 transition-all shadow-gray-500 shadow-md rounded"
             alt="rse-logo"
             src={`${CDN_URL}${info?.cloudinaryImageId}`}
           />
-          <div className="img-text-container">
-            <span className="img-text">
+          <div className="bottom-2.5 z-10">
+            <span className="font-bold">
               {info?.aggregatedDiscountInfoV3?.header}{" "}
               {info?.aggregatedDiscountInfoV3?.subHeader}
             </span>
@@ -29,8 +29,8 @@ const RestaurantCard = (props: any) => {
         </div>
         <div className="detail-container">
           <span className="res-name">{info?.name}</span>
-          <div className="rating-container">
-            <img className="rating-logo" alt="rating" src={ratingLogo}></img>
+          <div className="flex gap-1.5">
+            <img className="w-[25px]" alt="rating" src={ratingLogo}></img>
             <span>{info?.avgRating}</span>
             <span>{info?.sla?.slaString}</span>
           </div>

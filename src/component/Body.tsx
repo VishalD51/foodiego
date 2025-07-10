@@ -60,14 +60,25 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="search">
-        <div>
+      <div className="m-2.5 flex gap-12">
+        <div className="flex gap-1.5 items-center">
           <span className="">Search:</span>
-          <input onChange={(e) => handleSearch(e)} value={search} />
+          <input
+            onChange={(e) => handleSearch(e)}
+            value={search}
+            className="border rounded h-8 px-1"
+          />
         </div>
-        <button onClick={handleTopRated}>Top Rated</button>
+        <div>
+          <button
+            className="border px-2 rounded bg-red-600 text-white py-1.5 hover:cursor-pointer hover:bg-red-800"
+            onClick={handleTopRated}
+          >
+            Top Rated
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex gap-2.5 flex-wrap mx-[50px] items-center">
         {filterList.length > 0 ? (
           filterList.map((item) => (
             <RestaurantCard restData={item} key={item.info.id} />

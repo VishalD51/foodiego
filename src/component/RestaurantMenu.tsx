@@ -16,26 +16,26 @@ const RestaurantMenu = () => {
   console.log(restInfo?.cards?.[4]?.groupedCard?.cardGroupMap);
 
   return (
-    <div>
-      <h1>{info?.name}</h1>
-      <div className="rating-container">
-        <img className="rating-logo" alt="rating" src={ratingLogo}></img>
+    <div className="p-4 mx-auto w-full flex flex-col max-w-[600px]">
+      <h1 className="font-bold text-2xl">{info?.name}</h1>
+      <div className="flex gap-1.5">
+        <img className="w-7 h-7" alt="rating" src={ratingLogo}></img>
         <span>
           {info?.avgRating} {`(${info?.totalRatingsString})`}
         </span>
-        <span>{info?.costForTwoMessage}</span>
       </div>
+      <span>{info?.costForTwoMessage}</span>
       <p>{info?.sla?.slaString?.toLowerCase()}</p>
-      <div className="category-container">
-        <p className="title">
+      <div className="mt-8">
+        <p className="font-bold p-2 border rounded">
           {categoryData?.title}
           {`(${categoryData?.itemCards?.length})`}
         </p>
         {categoryData?.itemCards?.length > 0 &&
           categoryData?.itemCards?.map(({ card }) => (
-            <div className="itemCard">
+            <div className="my-3 border rounded p-3 border-gray-400">
               <p className="vegNonveg">{card?.info?.vegClassifier}</p>
-              <p className="name">{card?.info?.name}</p>
+              <p className="font-medium">{card?.info?.name}</p>
               <p className="pric">₹{card?.info?.defaultPrice / 100}</p>
               <p className="rating">
                 {card?.info?.ratings?.aggregatedRating?.rating}
