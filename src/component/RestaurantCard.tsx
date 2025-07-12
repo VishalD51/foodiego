@@ -16,7 +16,7 @@ const RestaurantCard = (props: any) => {
       <div className="res-card-in">
         <div className="img-container">
           <img
-            className="w-[250px] h-[120px] hover:rounded-xl hover:scale-95 duration-200 transition-all shadow-gray-500 shadow-md rounded"
+            className="w-[300px] h-[200px] object-cover  hover:rounded-xl hover:scale-95 duration-200 transition-all shadow-gray-500 shadow-md rounded"
             alt="rse-logo"
             src={`${CDN_URL}${info?.cloudinaryImageId}`}
           />
