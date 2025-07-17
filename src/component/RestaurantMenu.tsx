@@ -2,11 +2,13 @@ import ratingLogo from "../assets/rating.png";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "./useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const params = useParams();
 
   const restInfo = useRestaurantMenu(params);
+  const [showIndex, setShowIndex] = useState(1);
 
   if (restInfo === null) return;
 
@@ -31,8 +33,15 @@ const RestaurantMenu = () => {
         {info?.costForTwoMessage}, {info?.sla?.slaString?.toLowerCase()}
       </span>
       <div className="mt-8">
-        {categoryData?.map((category) => (
-          <RestaurantCategory data={category?.card?.card} />
+        {categoryData?.map((category, index) => (
+          <RestaurantCategory
+            data={category?.card?.card}
+            key={category?.card?.card?.title}
+            setShowIndex={() => {
+              showIndex === index ? setShowIndex(-1) : setShowIndex(index);
+            }}
+            showItem={index === showIndex ? true : false}
+          />
         ))}
       </div>
     </div>

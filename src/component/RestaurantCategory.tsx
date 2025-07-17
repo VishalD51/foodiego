@@ -1,11 +1,10 @@
 import { useState } from "react";
 import CategoryItem from "./CategoryItem";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data, setShowIndex, showItem }) => {
   console.log("data", data);
-  const [open, setOpen] = useState(false);
   const handleClick = () => {
-    setOpen(!open);
+    setShowIndex();
   };
   return (
     <div>
@@ -14,11 +13,13 @@ const RestaurantCategory = ({ data }) => {
           className="flex justify-between  pb-4 border-b-gray-300 border-b-6"
           onClick={handleClick}
         >
-          <span className="font-bold">{data?.title}</span>
-          <span>{open ? "🔼" : "🔽"}</span>
+          <span className="font-bold">
+            {data?.title} {`(${data?.itemCards?.length})`}
+          </span>
+          <span>{showItem ? "🔼" : "🔽"}</span>
         </div>
 
-        {open &&
+        {showItem &&
           data?.itemCards?.map((item) => <CategoryItem item={item?.card} />)}
       </div>
     </div>
