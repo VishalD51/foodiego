@@ -8,12 +8,15 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ConatctUs from "./component/ContactUs.tsx";
 import Error from "./component/Error.tsx";
 import RestaurantMenu from "./component/RestaurantMenu.tsx";
-
+import { Provider } from "react-redux";
+import AppStore from "./utils/AppStore.ts";
 const AppLayout = () => (
-  <div className="app">
-    <Header />
-    <Outlet />
-  </div>
+  <Provider store={AppStore}>
+    <div className="app">
+      <Header />
+      <Outlet />
+    </div>
+  </Provider>
 );
 
 const Grocery = lazy(() => import("./component/Grocery.tsx"));
