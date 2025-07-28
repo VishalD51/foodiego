@@ -10,6 +10,7 @@ import Error from "./component/Error.tsx";
 import RestaurantMenu from "./component/RestaurantMenu.tsx";
 import { Provider } from "react-redux";
 import AppStore from "./utils/AppStore.ts";
+import Cart from "./component/Cart.tsx";
 const AppLayout = () => (
   <Provider store={AppStore}>
     <div className="app">
@@ -40,6 +41,8 @@ const route = createBrowserRouter([
           </Suspense>
         ),
       },
+      { path: "/cart", element: <Cart /> },
+
     ],
   },
 ]);

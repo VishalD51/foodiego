@@ -39,7 +39,7 @@ const CategoryItem = ({ item }) => {
         <button
           className="p-2 bg-black text-white  opacity-50 border-2 rounded cursor-pointer"
           onClick={() => {
-            handleAdd("Pizza");
+            handleAdd(item);
           }}
         >
           {" "}
