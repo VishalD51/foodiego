@@ -5,7 +5,7 @@ import Header from "./component/Header.tsx";
 import Body from "./component/Body.tsx";
 import AboutUs from "./component/AboutUs.tsx";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import ConatctUs from "./component/ContactUs.tsx";
+import ConatctUs from "./component/ContactUs.js";
 import Error from "./component/Error.tsx";
 import RestaurantMenu from "./component/RestaurantMenu.tsx";
 import { Provider } from "react-redux";
@@ -42,7 +42,6 @@ const route = createBrowserRouter([
         ),
       },
       { path: "/cart", element: <Cart /> },
-
     ],
   },
 ]);
