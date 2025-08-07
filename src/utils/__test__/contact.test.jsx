@@ -5,13 +5,13 @@ import ContactUs from "../../component/ContactUs";
 describe("Test case for Contact Page", () => {
   it("Should load contact page", () => {
     render(<ContactUs />);
-    const heading = screen.getByRole("heading");
+    const heading = screen.getByRole("button");
     expect(heading).toBeInTheDocument();
   });
 
   it("Shoud be name placeholder in contact page", () => {
     render(<ContactUs />);
-    const placeholder = screen.getByPlaceholderText("Name1");
+    const placeholder = screen.getByPlaceholderText("Name");
     expect(placeholder).toBeInTheDocument();
   });
 });

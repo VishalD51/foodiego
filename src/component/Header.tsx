@@ -5,6 +5,11 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+  const [login, setLogin] = useState(false);
+
+  const handleLogin = () => {
+    setLogin(!login);
+  };
 
   useEffect(() => {
     console.log("header render");
@@ -34,6 +39,12 @@ const Header = () => {
           <li className="hover:text-blue-500">
             <Link to="cart">Cart - {cartItem.length}</Link>
           </li>
+          <button
+            className="border-2 p-2 rounded-xl w-25"
+            onClick={handleLogin}
+          >
+            {login ? "Logout" : "Login"}
+          </button>
         </ul>
       </div>
     </div>

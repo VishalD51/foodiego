@@ -9,11 +9,11 @@ const RestaurantCard = (props: any) => {
     if (str?.length <= maxLength) return str;
     return str?.slice(0, maxLength) + "...";
   };
-  console.log("info", info);
+  console.log("info", restData);
 
   return (
     <Link to={`/restaurant/${info?.id}`} className="flex">
-      <div className="res-card-in">
+      <div className="res-card-in" data-testid="resCard">
         <div className="img-container">
           <img
             className="w-[300px] h-[200px] object-cover  hover:rounded-xl hover:scale-95 duration-200 transition-all shadow-gray-500 shadow-md rounded"

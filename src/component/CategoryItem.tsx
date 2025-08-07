@@ -11,7 +11,10 @@ const CategoryItem = ({ item }) => {
     disptch(addItem(item));
   };
   return (
-    <div className="flex gap-5 items-center bg-white my-5 border-b-2 pb-5 border-b-gray-300">
+    <div
+      className="flex gap-5 items-center bg-white my-5 border-b-2 pb-5 border-b-gray-300"
+      data-testid="item"
+    >
       <div className="w-9/12">
         <p className="font-medium">{info?.name}</p>
         <p>
